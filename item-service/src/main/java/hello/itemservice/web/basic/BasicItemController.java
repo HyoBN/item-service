@@ -51,11 +51,25 @@ public class BasicItemController {
         return "basic/item";
     }
 
-    @PostMapping("/add")
+    //@PostMapping("/add")
     public String addItemV2(@ModelAttribute("item") Item item, Model model){
 
         itemRepository.save(item);
         //model.addAttribute("item", item); @ModelAttribute 애노테이션이 수행해줌.
+        return "basic/item";
+    }
+
+    //@PostMapping("/add")
+    public String addItemV3(@ModelAttribute Item item){
+        //@ModelAttribute의 default값. 특별한 지정이 없으면 클래스명을 소문자로 바꾸어 attribute 전달.
+        itemRepository.save(item);
+        return "basic/item";
+    }
+
+    // String, int 등의 타입이 아니라 직접 만든 클래스가 오는 경우, @ModelAttribute까지 생략 가능.
+    @PostMapping("/add")
+    public String addItemV4(Item item){
+        itemRepository.save(item);
         return "basic/item";
     }
 
